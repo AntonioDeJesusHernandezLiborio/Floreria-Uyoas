@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>INICIO-Uyoa'S Arte Floral</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="	sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="estilos/estilo.css">
+	</head>
+<body>
+	<div class="container">
+		<br>
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#targe">
+							<span class="sr-only">Menu</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<img id="logo" src="logo/logo.png">
+						<br>
+						<p class="text-muted">"Deja que las flores hablen por ti"</p>
+					</div>
+					<div class="collapse navbar-collapse" id="targe">
+						<ul class="nav navbar-nav navbar-right" id="header1">
+							<li> <a href="index.html">INICIO </a></li>
+							<li class="dropdown"> 
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">REGISTRAR<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="Casuales.html">ARREGLOS CASUALES</a></li>
+										<li class="divider"></li>
+										<li><a href="Paquete.html">PAQUETES</a></li>
+										<li class="divider"></li>
+										<li><a href="#">ARREGLO</a></li>
+										<li><a href="#">JARDINERAS</a></li>
+										<li><a href="#">ALFOMBRA</a></li>
+										<li><a href="#">BASES</a></li>
+									</ul>
+								</li>
+							<li> <a href="#">REPORTES</a></li>
+							<li> <a href="#">PEDIDOS</a></li>
+							<li> <a href="#">CONFIGURACION</a></li>
+							<li> <a href="#">CERRAR SESION</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</nav>
+		</header>
+	</div>
+
+
+
+	<div class="container">
+		<section class="main row">
+			<article class="col-xs-12 col-sm-12 col-md-12 col-lg- col-md-12 text-justify text-muted"  class="tama" >
+				<p>
+					<h1>Registro de arreglos casuales</h1 >
+					<form action="" class="">
+						<div class="form-group">
+							<label for="">Nombre:</label>
+							<input class="form-control" type="text" id="nombre" placeholder="Nombre del arreglo">
+						</div>
+						<div class="form-group">
+							<label for="">Precio</label>
+							<input class="form-control" type="text" id="precio" placeholder="0.00">
+						</div>
+						<div class="form-group">
+							<label for="">Seleccione Categoria</label>
+							<select class="form-control" name="" id="option">
+								<option value="">Bodas</option>
+								<option value="">Novia</option>
+								<option value="">Novio</option>
+								<option value="">Esposa</option>
+								<option value="">Esposo</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Descripcion</label>
+							<textarea class="form-control" type="text" id="descripcion" placeholder="Descripcion"></textarea> 
+
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg- col-md-12">
+							<br>
+						<label for="archivo">Seleciona foto</label>
+						<input class="btn btn-primary" type="file" id="foto" width="100">
+						<p class="">Maximo 4MB</p>
+						</div>
+						<div class="row col-xs-6 col-sm-6 col-md-6 col-lg- col-md-6 container">
+							<button class="btn btn-primary">Guardar</button>
+						</div>	
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg- col-md-6 container">
+						<button class="btn btn-danger">Cancelar</button>
+						</div>
+					</form>
+				</p>
+			</article>
+	</div>
+	<div class="container">
+		<h1>Lista de productos registrados</h1>
+		<table class="table table-striped table-bordered table-hover">
+			<tr class="success">
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Categoria</th>
+				<th>Descripcion</th>
+			</tr>
+			<tr>
+				<td>Rosa y girasoles</td>
+				<td>150.0</td>
+				<td>Novia</td>
+				<td>Excelente duracion para el calor</td>
+			</tr>
+			<tr>
+				<td>Rosas con lilis</td>
+				<td>90.0</td>
+				<td>Esposa</td>
+				<td>Para pedir perdon</td>
+			</tr>
+			<tr>
+				<td>Claveles y Girasoles</td>
+				<td>200.0</td>
+				<td>Esposa</td>
+				<td>Jeje</td>
+			</tr>
+		</table>
+	</div>
+	<footer>
+		<div class="container">
+			<h4>
+				 &copy;copyright Uyoa'S Arte Floral 2019-2020 todos los derechos reservados
+			</h4>
+		</div>
+	</footer>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="	sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+</html>
