@@ -1,0 +1,40 @@
+html{
+	/*font-size: 13px;*/
+}
+
+
+body{
+	background: white;
+	padding-top: 150px;
+}
+
+#navbar1{
+	background:rgb(255, 255, 255);
+}
+
+.main{
+	background: #FFF;
+	color: black;
+}
+
+.color1 {
+	background: white;
+	color: #fff;
+}
+aside{
+	background: #EC0868;
+	color: #fff;
+}
+footer{
+	background: #373F51;
+	color: #fff;
+}
+
+
+
+
+#foto{
+	width: 200px;
+	height: 300px;
+}
+
