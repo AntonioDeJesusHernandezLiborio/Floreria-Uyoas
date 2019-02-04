@@ -57,6 +57,7 @@ $(document).ready(function()
 	
 });
 
+//Ocultar o mostrar tabla
 function mostrarOcultarTablas(con){
 	if(con==1){
 		$("#Arreglo1").show();
@@ -70,12 +71,9 @@ function mostrarOcultarTablas(con){
 	return con;
 }
 
-
-
-
-
+//Vaciar cajas de texto
 function vaciar(){
-	var Parent = document.getElementById("jardineras");
+	var Parent = document.getElementById("Arreglos");
 	while(Parent.hasChildNodes())
 	{
    		Parent.removeChild(Parent.firstChild);
@@ -137,4 +135,16 @@ function borrar(arreglo){
 		}).fail(function(data){
 			alert("Error en el servidor"+data);
 	})
+}
+function buscar(){
+$("#search").keyup(function(){
+ _this = this;
+ // Show only matching TR, hide rest of them
+ $.each($("#mytable tbody tr"), function() {
+ if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+ $(this).hide();
+ else
+ $(this).show();
+ });
+ });
 }

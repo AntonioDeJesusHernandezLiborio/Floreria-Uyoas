@@ -49,12 +49,13 @@
 		</nav>
 	</div>
 	<div class="container">
-		<button class="btn text-primary" id="MostrarArregloTB" >Mostrar lista de arreglos</button>
+		<button class="btn badge-secondary" id="MostrarArregloTB" >Mostrar lista de arreglos</button>
 	</div>
 	<br>
 	<div class="container" id="Arreglo1" style="display: none;">
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 text-justify text-muted"  class="tama" >
 			<button class="btn btn-primary" data-toggle="modal" data-target="#nuevoArreglo">Nuevo Arreglo</button>
+			<input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar en la tabla">
 			<h4>Lista de arreglos</h4>
 			<p>
 				<table class="table table-striped table-bordered table-hover">
@@ -73,15 +74,16 @@
 
 	<!-- 	Jardineras 		-->
 	<div class="container">
-		<button class="btn text-primary" id="MostrarArregloTB" >Mostrar lista de arreglos</button>
+		<button class="btn badge-secondary" id="MostrarArregloTB" >Mostrar lista de arreglos</button>
 	</div>
 	<br>
 	<div class="container" id="Arreglo1" style="display: none;">
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 text-justify text-muted"  class="tama" >
 			<button class="btn btn-primary" data-toggle="modal" data-target="#nuevoArreglo">Nuevo Arreglo</button>
+			<input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar en la tabla">
 			<h4>Lista de arreglos</h4>
 			<p>
-				<table class="table table-striped table-bordered table-hover">
+				<table class="table table-striped table-bordered table-hover" id="tablaArreglos">
 					<tr class="success">
 						<th>Codigo</th>
 						<th>Nombre</th>
