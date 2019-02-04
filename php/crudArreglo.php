@@ -23,5 +23,16 @@
         }{
             echo '1';
         }
-    }    
+    }
+     if($Tipo=='3'){
+        $Clave = $_POST["clave"];
+        $consulta = "DELETE FROM tblarreglos WHERE arreglo_intCodigo='$Clave'";
+        $resultado = mysqli_query($conexion, $consulta);
+        if (!$resultado)
+        {
+            echo '0';
+        }{
+            echo '1';
+        }
+    }      
 ?>

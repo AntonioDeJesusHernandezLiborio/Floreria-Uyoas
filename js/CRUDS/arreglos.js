@@ -49,8 +49,29 @@ $(document).ready(function()
 				$("#nombreArreglo").val("");
 			})
 	});
+	var con = 1;
+	$("#MostrarArregloTB").click(function(){
+		con = mostrarOcultarTablas(con);
+	});
+
 	
 });
+
+function mostrarOcultarTablas(con){
+	if(con==1){
+		$("#Arreglo1").show();
+		$("#MostrarArregloTB").text("Ocultar lista de arreglos");
+		con=0;
+	}else{
+		$("#Arreglo1").hide();
+		$("#MostrarArregloTB").text("Mostrar lista de arreglos");
+		con=1;
+	}
+	return con;
+}
+
+
+
 
 
 function vaciar(){
@@ -74,10 +95,10 @@ function cargarDatos(){
 				var cadena= JSON.parse(data);
 				for (var i = cadena.length - 1; i >= 0; i--) {
 					var arreglo= cadena[i].arreglo_intCodigo+"-"+cadena[i].arreglo_vchNombre;
-					var nuevoAlumno="<tr><td>"+cadena[i].arreglo_intCodigo+"  </td><td>  "+cadena[i].arreglo_vchNombre+"</td><td><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='pasar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;<button class='btn btn-danger'>Eliminar</button></td></td></tr>";
+					var nuevoAlumno="<tr><td>"+cadena[i].arreglo_intCodigo+"  </td><td>  "+cadena[i].arreglo_vchNombre+"</td><td><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='pasar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;<button class='btn btn-danger' onclick='borrar("+'"'+arreglo+'"'+")'>Eliminar</button></td></td></tr>";
     				var nuevaFila = document.createElement("TR");
    					nuevaFila.innerHTML=nuevoAlumno;
-   				 	document.getElementById("jardineras").appendChild(nuevaFila);
+   				 	document.getElementById("Arreglos").appendChild(nuevaFila);
 				}
 				
 			}).fail(function(data){
@@ -92,4 +113,28 @@ function pasar(arreglo){
 	//alert(sp[1]);
 	$("#claveEditar").val(sp[0]);
 	$("#nombreEditar").val(sp[1]);
+}
+
+function borrar(arreglo){
+	var sp =arreglo.split("-");
+	alert(sp);
+	var valores = {"tipo":"3","clave":sp[0]};
+	$.ajax(
+		{
+			data:valores,	
+			url:"php/crudArreglo.php",
+			type:"POST",
+			async:true
+		}
+		).done(function(data){
+			if(data=='1'){
+				alert("Eliminado");
+				vaciar();
+				cargarDatos();
+			}else{
+				alert("Ocurrio un error al Eliminar");
+			}
+		}).fail(function(data){
+			alert("Error en el servidor"+data);
+	})
 }
