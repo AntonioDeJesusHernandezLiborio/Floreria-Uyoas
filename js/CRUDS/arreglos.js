@@ -54,7 +54,16 @@ $(document).ready(function()
 		con = mostrarOcultarTablas(con);
 	});
 
-	
+	$("#search").keyup(function(){
+		 _this = this;
+		 // Show only matching TR, hide rest of them
+		 $.each($("#tablaArreglos tbody tr"), function() {
+		 if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+		 $(this).hide();
+		 else
+		 $(this).show();
+		 });
+	 });
 });
 
 //Ocultar o mostrar tabla
@@ -93,7 +102,7 @@ function cargarDatos(){
 				var cadena= JSON.parse(data);
 				for (var i = cadena.length - 1; i >= 0; i--) {
 					var arreglo= cadena[i].arreglo_intCodigo+"-"+cadena[i].arreglo_vchNombre;
-					var nuevoAlumno="<tr><td>"+cadena[i].arreglo_intCodigo+"  </td><td>  "+cadena[i].arreglo_vchNombre+"</td><td><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='pasar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;<button class='btn btn-danger' onclick='borrar("+'"'+arreglo+'"'+")'>Eliminar</button></td></td></tr>";
+					var nuevoAlumno="<tr><td>"+cadena[i].arreglo_intCodigo+"  </td><td>  "+cadena[i].arreglo_vchNombre+"</td><td><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='pasar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' onclick='borrar("+'"'+arreglo+'"'+")'>Eliminar</button></td></td></tr>";
     				var nuevaFila = document.createElement("TR");
    					nuevaFila.innerHTML=nuevoAlumno;
    				 	document.getElementById("Arreglos").appendChild(nuevaFila);
@@ -135,16 +144,4 @@ function borrar(arreglo){
 		}).fail(function(data){
 			alert("Error en el servidor"+data);
 	})
-}
-function buscar(){
-$("#search").keyup(function(){
- _this = this;
- // Show only matching TR, hide rest of them
- $.each($("#mytable tbody tr"), function() {
- if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
- $(this).hide();
- else
- $(this).show();
- });
- });
 }
