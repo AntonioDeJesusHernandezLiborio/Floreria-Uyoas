@@ -1,0 +1,208 @@
+CREATE DATABASE dbUyoas
+USE dbUyoas
+
+CREATE TABLE tblEmpleados(
+emple_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+emple_vchNombre VARCHAR(100) NOT NULL,
+emple_vchAM VARCHAR(50) NOT NULL,
+emple_vchAP VARCHAR(50) NOT NULL,
+emple_ftlPago FLOAT NOT NULL,
+emple_vchTelefono NVARCHAR(20) NOT NULL UNIQUE,
+emple_vchDireccion VARCHAR(200),
+emple_bitActivo BOOLEAN
+);
+
+CREATE TABLE tblRoles(
+rol_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+rol_vchNombre VARCHAR(200) NOT NULL,
+rol_dtFechaCreacion DATETIME NOT NULL,
+rol_dtFechaModificacion DATETIME NULL,
+rol_dtFechaEliminacion DATETIME NULL,
+rol_intIdUsuarioCreacion INT NULL,
+rol_intIdUsuarioModificacion INT NULL,
+rol_intIdUsuarioEliminar INT NULL,
+rol_bitActivo BOOLEAN
+);
+
+CREATE TABLE tblRolesEmpleados(
+rolemple_intCodigo INT PRIMARY KEY AUTO_INCREMENT,
+rolemple_intIdRoles INT NOT NULL,
+rolemple_intIdEmpleado INT NOT NULL,
+CONSTRAINT fk_LlaveRol FOREIGN KEY(rolemple_intIdRoles) REFERENCES tblRoles(rol_intCodigo),
+CONSTRAINT fk_LlaveEmpleado FOREIGN KEY(rolemple_intIdEmpleado) REFERENCES tblEmpleados(emple_intCodigo)
+)
+
+CREATE TABLE tblCategoria (
+cate_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+cate_vchNombre NVARCHAR(50) NOT NULL UNIQUE,
+cate_dtFechaCreacion DATETIME NOT NULL,
+cate_dtFechaModificacion DATETIME NULL,
+cate_dtFechaEliminacion DATETIME NULL,
+cate_intIdUsuarioCreacion INT NULL,
+cate_intIdUsuarioModificacion INT NULL,
+cate_intIdUsuarioEliminar INT NULL,
+cate_bitActivo BOOLEAN,
+CONSTRAINT cate_intIdUsuarioCreacion FOREIGN KEY(cate_intIdUsuarioCreacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT cate_intIdUsuarioModificacion FOREIGN KEY(cate_intIdUsuarioModificacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT cate_intIdUsuarioEliminar FOREIGN KEY(cate_intIdUsuarioEliminar) REFERENCES tblEmpleados(emple_intCodigo)
+);
+
+
+CREATE TABLE tblProducto(
+pro_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+pro_vchNombre NVARCHAR(100) NOT NULL UNIQUE,
+pro_ftlPrecioProveedor FLOAT NOT NULL, 
+pro_ftlPrecio  FLOAT NOT NULL,
+pro_ftlGanancia FLOAT NOT NULL,
+pro_dtFechaCreacion DATETIME NOT NULL,
+pro_dtFechaModificacion DATETIME NULL,
+pro_dtFechaEliminacion DATETIME NULL,
+pro_intIdUsuarioCreacion INT NULL,
+pro_intIdUsuarioModificacion INT NULL,
+pro_intIdUsuarioEliminar INT NULL,
+pro_bitActivo BOOLEAN,
+CONSTRAINT fk_LlaveUsuarioCreacionPro FOREIGN KEY(pro_intIdUsuarioCreacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveUsuarioModificacionPro FOREIGN KEY(pro_intIdUsuarioModificacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveUsuarioEliminacionPro FOREIGN KEY(pro_intIdUsuarioEliminar) REFERENCES tblEmpleados(emple_intCodigo)
+)
+
+CREATE TABLE tblProducCategoria(
+prodCategoria_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+prodCategoria_IdCategoria INT NOT NULL,
+prodCategoria_intProducto INT NOT NULL,
+prodCategoria_dtFechaCreacion DATETIME NOT NULL,
+prodCategoria_dtFechaModificacion DATETIME NULL,
+prodCategoria_dtFechaEliminacion DATETIME NULL,
+prodCategoria_intIdUsuarioCreacion INT NULL,
+prodCategoria_intIdUsuarioModificacion INT NULL,
+prodCategoria_intIdUsuarioEliminar INT NULL,
+CONSTRAINT fk_LlaveUsuarioCreacionProdCa FOREIGN KEY(prodCategoria_intIdUsuarioCreacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveUsuarioModificacionProdCa FOREIGN KEY(prodCategoria_intIdUsuarioModificacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveUsuarioEliminacionProdCa FOREIGN KEY(prodCategoria_intIdUsuarioEliminar) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveCategoriaProdCat FOREIGN KEY(prodCategoria_IdCategoria) REFERENCES tblCategoria(cate_intCodigo),
+CONSTRAINT fk_LlaveProductoProdCat FOREIGN KEY(prodCategoria_intProducto) REFERENCES tblProducto(pro_intCodigo)
+)
+
+CREATE TABLE tblImagen(
+img_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+img_imagen TEXT NOT NULL,
+img_dtFechaCreacion DATETIME NOT NULL,
+img_dtFechaModificacion DATETIME NULL,
+img_dtFechaEliminacion DATETIME NULL,
+img_intIdUsuarioCreacion INT NULL,
+img_intIdUsuarioModificacion INT NULL,
+img_intIdUsuarioEliminar INT NULL,
+CONSTRAINT fk_LlaveUsuarioCreacionImg FOREIGN KEY(img_intIdUsuarioCreacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveUsuarioModificacionImg FOREIGN KEY(img_intIdUsuarioModificacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveUsuarioEliminacionImg FOREIGN KEY(img_intIdUsuarioEliminar) REFERENCES tblEmpleados(emple_intCodigo)
+)
+
+CREATE TABLE tblProdImagen(
+proimg_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+proimg_intImagen INT NOT NULL,
+proimg_intProducto INT NOT NULL,
+CONSTRAINT fk_LlaveImagenproimg FOREIGN KEY(proimg_intImagen) REFERENCES tblImagen(img_intCodigo),
+CONSTRAINT fk_LlaveProductoproimg FOREIGN KEY(proimg_intProducto) REFERENCES tblProducto(pro_intCodigo)
+)
+
+CREATE TABLE tblClientes(
+client_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+client_vchNombre VARCHAR(100) NOT NULL,
+client_vchAP VARCHAR(100) NOT NULL,
+client_vchAM VARCHAR(100) NOT NULL,
+client_nvchCorreo NVARCHAR(150) NOT NULL UNIQUE,
+client_nvchClave NVARCHAR(500) NOT NULL,
+client_vchTelefono NVARCHAR(20) NOT NULL,
+client_nvchDireccion NVARCHAR(600) NOT NULL,
+client_dtfechaNacimiento DATETIME NOT NULL
+)
+
+
+CREATE TABLE tblPedidosProducto(
+pedidos_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+pedidos_intidArreglo INT NOT NULL,
+pedidos_fltGanancia FLOAT NOT NULL,
+pedidos_Direccion NVARCHAR(600) NOT NULL,
+pedidos_dtFechaPedido DATETIME NOT NULL,
+pedidos_dtFechaEntrega DATETIME NOT NULL,
+pedidos_vchHora NVARCHAR(10) NOT NULL,
+pedidos_vchDe VARCHAR(100) NULL,
+pedidos_vchPara VARCHAR(100) NULL,
+pedidos_vchTexto VARCHAR(200) NULL,
+pedidos_intIdCliente INT NOT NULL,
+pedidos_bitEntregado BOOLEAN NOT NULL,
+pedidos_bitActivo BOOLEAN NOT NULL,
+CONSTRAINT fk_LlaveClientePedido FOREIGN KEY(pedidos_intIdCliente) REFERENCES tblClientes(client_intCodigo)
+)
+
+
+CREATE TABLE tblArreglos(
+arreglo_intCodigo INT PRIMARY KEY AUTO_INCREMENT,
+arreglo_vchNombre VARCHAR(500) NOT NULL
+)
+
+CREATE TABLE tblJardinera(
+jardinera_intCodigo INT PRIMARY KEY AUTO_INCREMENT,
+jardinera_vchNombre VARCHAR(500) NOT NULL
+)
+
+CREATE TABLE tblAlfombra(
+alfombra_intCodigo INT PRIMARY KEY AUTO_INCREMENT,
+alfombra_vchNombre VARCHAR(500) NOT NULL
+)
+
+CREATE TABLE tblBases(
+bases_intCodigo INT PRIMARY KEY AUTO_INCREMENT,
+bases_vchNombre VARCHAR(500) NOT NULL
+)
+
+
+CREATE TABLE tblPaquetes(
+paquete_intCodigo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+paquete_vchNombre NVARCHAR(500) NOT NULL,
+paquete_ftlPrecio FLOAT NOT NULL,
+paquete_ftlGanancia FLOAT NOT NULL,
+paquete_intCantidadArreglos INT NOT NULL,
+paquete_intCodigoArreglo INT NOT NULL,
+paquete_ftlMetrosJardinera FLOAT NOT NULL,
+paquete_intCodigoJardinera INT NOT NULL,
+paquete_fltMetrosAlfombra FLOAT NOT NULL,
+paquete_intCodigoAlfombra INT NOT NULL,
+paquete_intCodigoBases INT NOT NULL,
+paquete_dtFechaCreacion DATETIME NOT NULL,
+paquete_dtFechaModificacion DATETIME NULL,
+paquete_dtFechaEliminacion DATETIME NULL,
+paquete_intIdUsuarioCreacion INT NULL,
+paquete_intIdUsuarioModificacion INT NULL,
+paquete_intIdUsuarioEliminar INT NULL,
+paquete_bitActivo BOOLEAN,
+CONSTRAINT fk_LlaveUsuarioCreacionPaque FOREIGN KEY(paquete_intIdUsuarioCreacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveUsuarioModificacionPaque FOREIGN KEY(paquete_intIdUsuarioModificacion) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveUsuarioEliminacionPaque FOREIGN KEY(paquete_intIdUsuarioEliminar) REFERENCES tblEmpleados(emple_intCodigo),
+CONSTRAINT fk_LlaveArregloFk FOREIGN KEY(paquete_intCodigoArreglo) REFERENCES tblArreglos(arreglo_intCodigo),
+CONSTRAINT fk_LlaveBasesFk FOREIGN KEY(paquete_intCodigoBases) REFERENCES tblBases(bases_intCodigo),
+CONSTRAINT fk_LlaveJardineraFk FOREIGN KEY(paquete_intCodigoJardinera) REFERENCES tblJardinera(jardinera_intCodigo),
+CONSTRAINT fk_LlaveAlfombraFk FOREIGN KEY(paquete_intCodigoAlfombra) REFERENCES tblAlfombra(alfombra_intCodigo)
+
+)
+
+
+
+CREATE TABLE tblPedidosPaquetes(
+pedidos_intCodigo INT PRIMARY KEY AUTO_INCREMENT,
+pedidos_intIdPaquete INT NOT NULL,
+pedidos_fltGanancia FLOAT NOT NULL,
+pedidos_Direccion NVARCHAR(600) NOT NULL,
+pedidos_dtFechaPedido DATETIME NOT NULL,
+pedidos_dtFechaEntrega DATETIME NOT NULL,
+pedidos_vchHora NVARCHAR(10) NOT NULL,
+pedidos_vchDe VARCHAR(100) NULL,
+pedidos_vchPara VARCHAR(100) NULL,
+pedidos_vchTexto VARCHAR(200) NULL,
+pedidos_intIdCliente INT NOT NULL,
+pedidos_bitEntregado BOOLEAN NOT NULL,
+pedidos_bitActivo BOOLEAN NOT NULL,
+CONSTRAINT fk_LlaveClientePedidoFK FOREIGN KEY(pedidos_intIdCliente) REFERENCES tblClientes(client_intCodigo),
+CONSTRAINT fk_LlavePaqueteFK FOREIGN KEY(pedidos_intIdPaquete) REFERENCES tblPaquetes(paquete_intCodigo),
+CONSTRAINT fk_LlaveClientePedidoPqueteFK FOREIGN KEY(pedidos_intIdCliente) REFERENCES tblClientes(client_intCodigo)
+)
