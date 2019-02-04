@@ -25,9 +25,31 @@ $(document).ready(function()
 				$("#nombreArreglo").val("");
 			})
 	});
-
-
-
+	//actualizarArreglo
+	$("#actualizarArreglo").click(function(){
+		var valores = {"tipo":"2","nombre":$("#nombreEditar").val(),"clave":$("#claveEditar").val()};
+		$.ajax(
+			{
+				data:valores,	
+				url:"php/crudArreglo.php",
+				type:"POST",
+				async:true
+			}
+			).done(function(data){
+				if(data=='1'){
+					alert("Actualizacion Exitosa");
+					vaciar();
+					cargarDatos();
+				}else{
+					alert("Ocurrio un error al actualizar");
+				}
+			}).fail(function(data){
+				alert("Error en el servidor"+data);
+			}).always(function(data){
+				$("#nombreArreglo").val("");
+			})
+	});
+	
 });
 
 
@@ -52,7 +74,7 @@ function cargarDatos(){
 				var cadena= JSON.parse(data);
 				for (var i = cadena.length - 1; i >= 0; i--) {
 					var arreglo= cadena[i].arreglo_intCodigo+"-"+cadena[i].arreglo_vchNombre;
-					var nuevoAlumno="<tr><td>"+cadena[i].arreglo_intCodigo+"  </td><td>  "+cadena[i].arreglo_vchNombre+"</td><td><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='editar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;<button class='btn btn-danger'>Eliminar</button></td></td></tr>";
+					var nuevoAlumno="<tr><td>"+cadena[i].arreglo_intCodigo+"  </td><td>  "+cadena[i].arreglo_vchNombre+"</td><td><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='pasar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;<button class='btn btn-danger'>Eliminar</button></td></td></tr>";
     				var nuevaFila = document.createElement("TR");
    					nuevaFila.innerHTML=nuevoAlumno;
    				 	document.getElementById("jardineras").appendChild(nuevaFila);
@@ -65,8 +87,9 @@ function cargarDatos(){
 }
 
 
-function editar(arreglo){
+function pasar(arreglo){
 	var sp =arreglo.split("-");
 	//alert(sp[1]);
+	$("#claveEditar").val(sp[0]);
 	$("#nombreEditar").val(sp[1]);
 }
