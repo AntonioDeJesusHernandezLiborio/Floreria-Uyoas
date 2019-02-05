@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	$("#login").click(function(){
-		alert("Boton ha reaccionado!! Backa!!");
+		//alert("Boton ha reaccionado!! Backa!!");
 		var user = $("#user").val();
 		var pass = $("#pass").val();
-		alert("Agarró datos");
+		//alert("Agarró datos");
 		if ($.trim(user).length > 0 && $.trim(pass).length > 0) {
 			$.ajax({
 				url:"php/loguear.php",
@@ -15,13 +15,13 @@ $(document).ready(function() {
 				},
 
 				success:function(data) {
-					alert("Entra al php");
+					//alert("Entra al php");
 					$("#login").val("Login");
 					if (data=="1") {
-						alert("Si se loguea");
+						alert("Bienvenido");
 						$(location).attr('href','frontend/indexadmin.php')
 					}else{
-						alert("Vale mierda");
+						//alert("Vale mierda");
 						$('#result').html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dimiss='alert'>&times;</button><strong>¡Error!</strong> Los datos son incorrectos. </div>")
 					}
 				}
@@ -29,7 +29,7 @@ $(document).ready(function() {
 
 		}
 		else{
-			alert("Llena todos los campos, no mames!! -_-");
+			alert("Favor de llenar todos los campos -_-");
 		}
 	});
 });
