@@ -1,3 +1,19 @@
+<?php session_start();
+
+    if(isset($_SESSION['user'])){
+        
+    }else{
+    	//echo "No has iniciado sesión";
+    	echo "<script>
+                alert('No has iniciado sesión');
+                window.location= 'url.php'
+    	</script>";
+    	
+        header ('location: ../login.php');
+    }
+        
+?>
+
 <!DOCTYPE html>
 <meta charset="utf-8">
 <html>
