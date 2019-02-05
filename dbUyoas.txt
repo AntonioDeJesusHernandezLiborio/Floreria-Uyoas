@@ -205,3 +205,18 @@ CREATE TABLE tblPedidosPaquetes(
 	CONSTRAINT fk_LlavePaqueteFK FOREIGN KEY(pedidos_intIdPaquete) REFERENCES tblPaquetes(paquete_intCodigo),
 	CONSTRAINT fk_LlaveClientePedidoPqueteFK FOREIGN KEY(pedidos_intIdCliente) REFERENCES tblClientes(client_intCodigo)
 );
+
+// Agregado Stored Procedure de Login
+
+DELIMITER $$
+
+USE `dbuyoas`$$
+
+DROP PROCEDURE IF EXISTS `sp_login`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_login`(IN usuario VARCHAR(300), IN pass VARCHAR(300))
+BEGIN
+	SELECT `emple_vchUsuario` FROM tblempleados WHERE `emple_vchUsuario`=usuario AND `emple_vchPassword`=pass;
+    END$$
+
+DELIMITER ;
