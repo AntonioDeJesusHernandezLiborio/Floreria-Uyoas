@@ -10,7 +10,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/imagen.php",
+				url:"../php/imagen.php",
 				type:"POST",
 				async:true
 			}
@@ -35,7 +35,7 @@ function cargarDatosCategoria(){
 	vaciarCategoria();
 	$.ajax(
 			{	
-				url:"php/consultaCategoria.php",
+				url:"../php/consultaCategoria.php",
 				type:"GET",
 				async:true
 			}

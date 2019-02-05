@@ -7,7 +7,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudBases.php",
+				url:"../php/crudBases.php",
 				type:"POST",
 				async:true
 			}
@@ -33,7 +33,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudBases.php",
+				url:"../php/crudBases.php",
 				type:"POST",
 				async:true
 			}
@@ -97,7 +97,7 @@ function vaciarBases(){
 function cargarDatosBases(){
 	$.ajax(
 			{	
-				url:"php/consultaBases.php",
+				url:"../php/consultaBases.php",
 				type:"GET",
 				async:true
 			}
@@ -130,7 +130,7 @@ function borrarBases(arreglo){
 	$.ajax(
 		{
 			data:valores,	
-			url:"php/crudBases.php",
+			url:"../php/crudBases.php",
 			type:"POST",
 			async:true
 		}

@@ -2,56 +2,22 @@
 <meta charset="utf-8">
 <html>
 <head>
-	<title>INICIO-Uyoa'S Arte Floral</title>
+	<title>Paquetes - Uyoa'S</title>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="shortcut icon" href="logo/logo_version/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"> </script>
-	<script type="text/javascript" src="js/CRUDs/arreglos.js"></script>
-	<script type="text/javascript" src="js/CRUDs/jardineras.js"></script>
-	<script type="text/javascript" src="js/CRUDs/bases.js"></script>
-	<script type="text/javascript" src="js/CRUDs/alfombra.js"></script>
+	<link rel="shortcut icon" href="../logo/logo_version/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/estilo.css">
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"> </script>
+	<script type="text/javascript" src="../js/CRUDs/arreglos.js"></script>
+	<script type="text/javascript" src="../js/CRUDs/jardineras.js"></script>
+	<script type="text/javascript" src="../js/CRUDs/bases.js"></script>
+	<script type="text/javascript" src="../js/CRUDs/alfombra.js"></script>
 	</head>
 <body >
-	<div>
-		<!--navbar-collapse navbar-expand-lg navbar-light bg-light navbar fixed-top --->
-		<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="navbar1" >
-			<nav class="container">
-				<a href="#" class="navbar-brand">
-					<img src="logo/logo.png" alt="Logo de la empresa" width="150" height="auto">
-					<br>
-					<h6 class="text-muted">"Deja que las flores hablen por ti"</h6>
-				</a>
-				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Desplejar menú de navegación"><span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="menu-principal">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a href="index.html" class="nav-link">INICIO</a></li>
-						<li class="dropdown"> 
-							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" >REGISTRAR<span class="caret"></span></a>
-							<ul class="dropdown-menu"> 
-								<li><a href="Casuales.html"class="nav-link">ARREGLOS CASUALES</a></li>
-								<li class="divider"></li>
-								<li><a href="Paquete.html"class="nav-link">PAQUETES</a></li>
-								<li class="divider"></li>
-								<li><a href="#" href="#" class="nav-link">ARREGLO</a></li>
-								<li><a href="#" href="#" class="nav-link">JARDINERAS</a></li>
-								<li><a href="#" href="#" class="nav-link">ALFOMBRA</a></li>
-								<li><a href="#" href="#" class="nav-link">BASES</a></li>
-							</ul>
-						</li>
-						<li class="nav-item"><a href="#" class="nav-link">REPORTES</a></li>
-						<li class="nav-item"><a href="#" class="nav-link">PEDIDOS</a></li>
-						<li class="nav-item"><a href="#" class="nav-link">CONFIGURACION</a></li>
-						<li class="nav-item"><a href="#" class="nav-link">CERRAR SESION</a></li>
-					</ul>
-				</div>
-			</nav>
-		</nav>
-	</div>
-
+	<header>
+		<?php include '../Menu.html' ?>
+	</header>
 
 	<!---------------------------------------- JARDINERA ---------------------------------------------->
 	<div class="container">

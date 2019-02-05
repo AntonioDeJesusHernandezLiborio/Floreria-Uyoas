@@ -7,7 +7,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudAlfombras.php",
+				url:"../php/crudAlfombras.php",
 				type:"POST",
 				async:true
 			}
@@ -33,7 +33,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudAlfombras.php",
+				url:"../php/crudAlfombras.php",
 				type:"POST",
 				async:true
 			}
@@ -97,7 +97,7 @@ function vaciarAlfombra(){
 function cargarDatosAlfombra(){
 	$.ajax(
 			{	
-				url:"php/consultaAlfombra.php",
+				url:"../php/consultaAlfombra.php",
 				type:"GET",
 				async:true
 			}
@@ -130,7 +130,7 @@ function borrarAlfombra(arreglo){
 	$.ajax(
 		{
 			data:valores,	
-			url:"php/crudAlfombras.php",
+			url:"../php/crudAlfombras.php",
 			type:"POST",
 			async:true
 		}

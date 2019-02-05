@@ -8,7 +8,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudArreglo.php",
+				url:"../php/crudArreglo.php",
 				type:"POST",
 				async:true
 			}
@@ -34,7 +34,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudArreglo.php",
+				url:"../php/crudArreglo.php",
 				type:"POST",
 				async:true
 			}
@@ -96,7 +96,7 @@ function vaciarArreglos(){
 function cargarDatos(){
 	$.ajax(
 			{	
-				url:"php/consultaArreglo.php",
+				url:"../php/consultaArreglo.php",
 				type:"GET",
 				async:true
 			}
@@ -130,7 +130,7 @@ function borrarArreglo(arreglo){
 	$.ajax(
 		{
 			data:valores,	
-			url:"php/crudArreglo.php",
+			url:"../php/crudArreglo.php",
 			type:"POST",
 			async:true
 		}

@@ -7,7 +7,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudJardineras.php",
+				url:"../php/crudJardineras.php",
 				type:"POST",
 				async:true
 			}
@@ -33,7 +33,7 @@ $(document).ready(function()
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudJardineras.php",
+				url:"../php/crudJardineras.php",
 				type:"POST",
 				async:true
 			}
@@ -96,7 +96,7 @@ function vaciarJardinera(){
 function cargarDatosJardinera(){
 	$.ajax(
 			{	
-				url:"php/consultaJardineras.php",
+				url:"../php/consultaJardineras.php",
 				type:"GET",
 				async:true
 			}
@@ -129,7 +129,7 @@ function borrarJardinera(arreglo){
 	$.ajax(
 		{
 			data:valores,	
-			url:"php/crudJardineras.php",
+			url:"../php/crudJardineras.php",
 			type:"POST",
 			async:true
 		}
