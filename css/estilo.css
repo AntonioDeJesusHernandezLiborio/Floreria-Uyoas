@@ -1,7 +1,12 @@
+
+
 html{
 	/*font-size: 13px;*/
 }
-
+.tablaspaquetes {
+     overflow:scroll;
+     height:500px;
+}
 
 body{
 	background: white;

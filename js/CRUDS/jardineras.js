@@ -1,8 +1,7 @@
 $(document).ready(function()
 {
-	
-	cargarDatos();
-	
+
+	cargarDatosJardinera();
 	$("#guardarArreglo").click(function(){
 		var valores = {"tipo":"1","nombre":$("#nombreArreglo").val()};
 		$.ajax(
@@ -26,8 +25,6 @@ $(document).ready(function()
 				$("#nombreArreglo").val("");
 			})
 	});
-
-
 	//actualizarArreglo
 	$("#actualizarArreglo").click(function(){
 		var valores = {"tipo":"2","nombre":$("#nombreEditar").val(),"clave":$("#claveEditar").val()};
@@ -52,9 +49,9 @@ $(document).ready(function()
 				$("#nombreArreglo").val("");
 			})
 	});
-	var con = 1;
-	$("#MostrarArregloTB").click(function(){
-		con = mostrarOcultarTablas(con);
+	var cont = 1;
+	$("#MostrarJardineraTB").click(function(){
+		cont = mostrarOcultarTablas1(cont);
 	});
 
 	$("#search").keyup(function(){
@@ -70,17 +67,17 @@ $(document).ready(function()
 });
 
 //Ocultar o mostrar tabla
-function mostrarOcultarTablas(con){
-	if(con==1){
-		$("#Arreglo1").show();
-		$("#MostrarArregloTB").text("Ocultar lista de arreglos");
-		con=0;
+function mostrarOcultarTablas1(cont){
+	if(cont==1){
+		$("#Jardinera1").show();
+		$("#MostrarJardineraTB").text("Ocultar lista de jardinera");
+		cont=0;
 	}else{
-		$("#Arreglo1").hide();
-		$("#MostrarArregloTB").text("Mostrar lista de arreglos");
-		con=1;
+		$("#Jardinera1").hide();
+		$("#MostrarJardineraTB").text("Mostrar lista de jardinera");
+		cont=1;
 	}
-	return con;
+	return cont;
 }
 
 //Vaciar cajas de texto
@@ -94,7 +91,7 @@ function vaciar(){
 
 
 
-function cargarDatos(){
+function cargarDatosJardinera(){
 	$.ajax(
 			{	
 				url:"php/consultaArreglo.php",
@@ -105,10 +102,10 @@ function cargarDatos(){
 				var cadena= JSON.parse(data);
 				for (var i = cadena.length - 1; i >= 0; i--) {
 					var arreglo= cadena[i].arreglo_intCodigo+"-"+cadena[i].arreglo_vchNombre;
-					var nuevoAlumno="<tr><td WIDTH='1'>"+cadena[i].arreglo_intCodigo+"  </td><td WIDTH='500' >  "+cadena[i].arreglo_vchNombre+"</td><td WIDTH='300'><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='pasar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' onclick='borrar("+'"'+arreglo+'"'+")'>Eliminar</button></td></td></tr>";
+					var nuevoAlumno="<tr><td>"+cadena[i].arreglo_intCodigo+"  </td><td>  "+cadena[i].arreglo_vchNombre+"</td><td><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='pasar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' onclick='borrar("+'"'+arreglo+'"'+")'>Eliminar</button></td></td></tr>";
     				var nuevaFila = document.createElement("TR");
    					nuevaFila.innerHTML=nuevoAlumno;
-   				 	document.getElementById("Arreglos").appendChild(nuevaFila);
+   				 	document.getElementById("Jardinera").appendChild(nuevaFila);
 				}
 				
 			}).fail(function(data){

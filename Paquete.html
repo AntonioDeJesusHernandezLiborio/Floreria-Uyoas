@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"> </script>
 	<script type="text/javascript" src="js/CRUDs/arreglos.js"></script>
+	<script type="text/javascript" src="js/CRUDs/jardineras.js"></script>
 	</head>
 <body >
 	<div>
@@ -48,61 +49,80 @@
 			</nav>
 		</nav>
 	</div>
+
+
+
 	<div class="container">
-		<button class="btn badge-secondary" id="MostrarArregloTB" >Mostrar lista de arreglos</button>
+		<button class="btn btn-outline-success" id="MostrarArregloTB" >Mostrar lista de arreglos</button>
 	</div>
 	<br>
 	<div class="container" id="Arreglo1" style="display: none;">
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 text-justify text-muted"  class="tama" >
-			<button class="btn btn-primary" data-toggle="modal" data-target="#nuevoArreglo">Nuevo Arreglo</button>
-			<input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar en la tabla">
-			<h4>Lista de arreglos</h4>
-			<p>
-				<table class="table table-striped table-bordered table-hover" id="tablaArreglos">
-					<tr class="success">
-						<th>Codigo</th>
-						<th>Nombre</th>
-						<th>Acciones</th>
-					</tr>
-					<tbody id="Arreglos">
-					</tbody>
-				</table>
-			</p>
-			</article>
-		</section>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-8">
+						<button class="btn btn-primary" data-toggle="modal" data-target="#nuevoArreglo">Nuevo Arreglo</button>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-4">
+						<input class="form-control mr-sm-2" type="text" placeholder="Buscar arreglo por nombre o codigo" aria-label="Search" id="search">
+					</div>
+				</div>
+			</div>
+			<center><h4>Lista de arreglos</h4></center>
+			<div class="table-responsive tablaspaquetes" >
+				<div class="panel panel-default">
+					<div class="panel-body"></div>
+						<table class="table table-striped table-bordered table-hove" id="tablaArreglos">
+							<thead>
+								<tr class="success">
+									<th>Codigo</th>
+									<th>Nombre</th>
+									<th>Acciones</th>
+								</tr>
+							</thead>
+							<tbody id="Arreglos">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</article>
 	</div>
-
-
-
+	<br>
+	
 	<!-- 	Jardineras 		-->
 	<div class="container">
-		<button class="btn badge-secondary" id="MostrarArregloTB" >Mostrar lista de arreglos</button>
+		<button class="btn btn-outline-success" id="MostrarJardineraTB" >Mostrar lista de jardineras</button>
 	</div>
 	<br>
-	<div class="container" id="Arreglo1" style="display: none;">
+	<div class="container" id="Jardinera1" style="display: none;">
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 text-justify text-muted"  class="tama" >
-			<button class="btn btn-primary" data-toggle="modal" data-target="#nuevoArreglo">Nuevo Arreglo</button>
-			<input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar en la tabla">
-			<h4>Lista de arreglos</h4>
-			<p>
-				<table class="table table-striped table-bordered table-hover">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-8">
+						<button class="btn btn-primary" data-toggle="modal" data-target="#nuevoJardinera"">Nuevo Jardinera</button>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-4">
+						<input class="form-control mr-sm-2" type="text" placeholder="Buscar arreglo por nombre o codigo" aria-label="Search" id="search">
+					</div>
+				</div>
+			</div>
+			<center><h4>Lista de jardineras</h4></center>
+			<div class="table-responsive tablaspaquetes">
+				<table class="table table-striped table-bordered table-hover" id="tablaJardineras">
 					<tr class="success">
 						<th>Codigo</th>
 						<th>Nombre</th>
 						<th>Acciones</th>
 					</tr>
-					<tbody id="Arreglos">
+					<tbody id="Jardinera">
 					</tbody>
 				</table>
-			</p>
-			</article>
+			</div>
 		</section>
 	</div>
 
-
-
 	
-
 	<!-- Modal Nuevo Arreglo -->
 	<div class="modal fade" id="nuevoArreglo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -148,6 +168,54 @@
 	    </div>
 	  </div>
 	</div>
+
+
+
+    <!-- Modal nueva Jardinera -->
+	<div class="modal fade" id="nuevoJardinera" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Agrega Nueva Jardinera</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="form-group">
+				<label for="">Nombre:</label>
+				<input class="form-control" type="text" id="nombreJardinera">
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarArreglo">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- Editar Jardinera -->
+	<div class="modal fade" id="EditarArreglo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Editar Nombre Jardinera</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <label for="">Nombre:</label>
+	        	<input class="form-control" type="text" id="claveEditarJardinera" disabled>
+				<input class="form-control" type="text" id="nombreEditarJardinera">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" id="actualizarJardinera">Confirmar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
 
 	<footer>
 		<div class="container">
