@@ -19,9 +19,27 @@
 	<script type="text/javascript" src="js/CRUDS/login.js"></script>
 	</head>
 <body>
-	<header>
-		<?php include 'Menu.html' ?>
-	</header>
+	<div>
+		<!--navbar-collapse navbar-expand-lg navbar-light bg-light navbar fixed-top --->
+		<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="navbar1" >
+			<nav class="container">
+				<a href="#" class="navbar-brand">
+					<img src="logo/logo.png" alt="Logo de la empresa" width="150" height="auto">
+					<br>
+					<h6 class="text-muted">"Deja que las flores hablen por ti"</h6>
+				</a>
+				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Desplejar menú de navegación"><span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="menu-principal">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a href="#" class="nav-link">INICIO</a></li>
+						<li class="nav-item"><a href="login.php" class="nav-link">INICIAR SESION</a></li>
+					</ul>
+				</div>
+			</nav>
+		</nav>
+	</div>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
