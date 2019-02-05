@@ -1,45 +1,47 @@
 $(document).ready(function()
 {
-
 	cargarDatosJardinera();
-	$("#guardarArreglo").click(function(){
-		var valores = {"tipo":"1","nombre":$("#nombreArreglo").val()};
+
+	$("#guardarJardinera").click(function(){
+		var valores = {"tipo":"1","nombre":$("#nombreJardinera").val()};
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudArreglo.php",
+				url:"php/crudJardineras.php",
 				type:"POST",
 				async:true
 			}
 			).done(function(data){
 				if(data=='1'){
 					alert("Registro Exitoso");
-					vaciar();
-					cargarDatos();
+					vaciarJardinera();
+					cargarDatosJardinera();
 				}else{
 					alert("Ocurrio un error al registrarse");
 				}
 			}).fail(function(data){
 				alert("Error en el servidor"+data);
 			}).always(function(data){
-				$("#nombreArreglo").val("");
+				$("#nombreJardinera").val("");
 			})
 	});
+
+
 	//actualizarArreglo
-	$("#actualizarArreglo").click(function(){
-		var valores = {"tipo":"2","nombre":$("#nombreEditar").val(),"clave":$("#claveEditar").val()};
+	$("#actualizarJardinera").click(function(){
+		var valores = {"tipo":"2","nombre":$("#nombreEditarJardinera").val(),"clave":$("#claveEditarJardinera").val()};
 		$.ajax(
 			{
 				data:valores,	
-				url:"php/crudArreglo.php",
+				url:"php/crudJardineras.php",
 				type:"POST",
 				async:true
 			}
 			).done(function(data){
 				if(data=='1'){
 					alert("Actualizacion Exitosa");
-					vaciar();
-					cargarDatos();
+					vaciarJardinera();
+					cargarDatosJardinera();
 				}else{
 					alert("Ocurrio un error al actualizar");
 				}
@@ -54,10 +56,10 @@ $(document).ready(function()
 		cont = mostrarOcultarTablas1(cont);
 	});
 
-	$("#search").keyup(function(){
+	$("#searchJardinera").keyup(function(){
 		 _this = this;
 		 // Show only matching TR, hide rest of them
-		 $.each($("#tablaArreglos tbody tr"), function() {
+		 $.each($("#tablaJardineras tbody tr"), function() {
 		 if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
 		 $(this).hide();
 		 else
@@ -81,8 +83,8 @@ function mostrarOcultarTablas1(cont){
 }
 
 //Vaciar cajas de texto
-function vaciar(){
-	var Parent = document.getElementById("Arreglos");
+function vaciarJardinera(){
+	var Parent = document.getElementById("Jardinera");
 	while(Parent.hasChildNodes())
 	{
    		Parent.removeChild(Parent.firstChild);
@@ -94,15 +96,15 @@ function vaciar(){
 function cargarDatosJardinera(){
 	$.ajax(
 			{	
-				url:"php/consultaArreglo.php",
+				url:"php/consultaJardineras.php",
 				type:"GET",
 				async:true
 			}
 			).done(function(data){
 				var cadena= JSON.parse(data);
 				for (var i = cadena.length - 1; i >= 0; i--) {
-					var arreglo= cadena[i].arreglo_intCodigo+"-"+cadena[i].arreglo_vchNombre;
-					var nuevoAlumno="<tr><td>"+cadena[i].arreglo_intCodigo+"  </td><td>  "+cadena[i].arreglo_vchNombre+"</td><td><button class='btn btn-deafult' data-toggle='modal' data-target='#EditarArreglo' onclick='pasar("+'"'+arreglo+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' onclick='borrar("+'"'+arreglo+'"'+")'>Eliminar</button></td></td></tr>";
+					var filaJardinera= cadena[i].jardinera_intCodigo+"-"+cadena[i].jardinera_vchNombre;
+					var nuevoAlumno="<tr><td WIDTH='1'>"+cadena[i].jardinera_intCodigo+"  </td><td WIDTH='500'>"+cadena[i].jardinera_vchNombre+"</td><td WIDTH='300'><button class='btn btn-outline-secondary' data-toggle='modal' data-target='#EditarJardinera' onclick='pasarJardinera("+'"'+filaJardinera+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' onclick='borrarJardinera("+'"'+filaJardinera+'"'+")'>Eliminar</button></td></td></tr>";
     				var nuevaFila = document.createElement("TR");
    					nuevaFila.innerHTML=nuevoAlumno;
    				 	document.getElementById("Jardinera").appendChild(nuevaFila);
@@ -115,28 +117,27 @@ function cargarDatosJardinera(){
 }
 
 
-function pasar(arreglo){
+function pasarJardinera(arreglo){
 	var sp =arreglo.split("-");
-	//alert(sp[1]);
-	$("#claveEditar").val(sp[0]);
-	$("#nombreEditar").val(sp[1]);
+	$("#claveEditarJardinera").val(sp[0]);
+	$("#nombreEditarJardinera").val(sp[1]);
 }
 
-function borrar(arreglo){
+function borrarJardinera(arreglo){
 	var sp =arreglo.split("-");
 	var valores = {"tipo":"3","clave":sp[0]};
 	$.ajax(
 		{
 			data:valores,	
-			url:"php/crudArreglo.php",
+			url:"php/crudJardineras.php",
 			type:"POST",
 			async:true
 		}
 		).done(function(data){
 			if(data=='1'){
 				alert("Eliminado");
-				vaciar();
-				cargarDatos();
+				vaciarJardinera();
+				cargarDatosJardinera();
 			}else{
 				alert("Ocurrio un error al Eliminar");
 			}
