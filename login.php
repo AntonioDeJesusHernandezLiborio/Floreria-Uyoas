@@ -3,6 +3,7 @@
 	if (isset($_SESSION["user"])){
 		header("location:frontend/indexadmin.php");
 	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
 				<div class="collapse navbar-collapse" id="menu-principal">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a href="#" class="nav-link">INICIO</a></li>
-						<li class="nav-item"><a href="login.php" class="nav-link">INICIAR SESION</a></li>
+						<li class="nav-item"><a href="login.php?tipo=<?php echo $TIPO ?>" class="nav-link">INICIAR SESION</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -57,6 +58,7 @@
 					<input type="button" name="login" id="login" class="btn btn-success" value="Login">
 				</div>
 				<span id="result"></span>
+				<div id="iduser"></div>
 			</div>
 		</div>
 	</div>

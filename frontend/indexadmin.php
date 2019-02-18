@@ -1,7 +1,7 @@
 <?php session_start();
 
     if(isset($_SESSION['user'])){
-        
+       
     }else{
     	//echo "No has iniciado sesión";
     	echo "<script>
@@ -11,7 +11,6 @@
     	
         header ('location: ../login.php');
     }
-        
 ?>
 
 <!DOCTYPE html>
@@ -25,11 +24,13 @@
 	<link rel="stylesheet" type="text/css" href="../css/estilo.css">
 	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"> </script>
-	<script type="text/javascript" src="../js/nuevoBase.js"></script>
 	</head>
 <body>
+	<script type="text/javascript">
+
+	</script>
 	<header>
-		<?php include '../Menu.html' ?>
+		<?php include '../Menu.php' ?>
 	</header>
 	
 	<div class="container">
@@ -78,7 +79,16 @@
 			</div>
 		</div>
 	</div>
+	<input type="button" name="" value="pulsame" id="ie"></input>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#ie").click(function(){
+				alert($("#iduser1").text());
+			})
+		})
 
+	</script>
+	<div id="iduser1" style="display: none;" ><?php echo $TIPO; ?></div>
 	<footer>
 		<div class="container">
 			<h4>s

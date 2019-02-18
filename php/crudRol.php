@@ -1,10 +1,9 @@
-<?php 
-	include ("conexion.php");
+<?php
+    include ("conexion.php");
     $Tipo = $_POST["tipo"];
-
     if($Tipo=='1'){
         $Nombre = $_POST["nombre"];
-        $consulta = "INSERT INTO tblbases(bases_vchNombre)VALUES('$Nombre')";
+        $consulta = "INSERT INTO tblrol(rol_Descripcion)VALUES ('$Nombre');";
         $resultado = mysqli_query($conexion, $consulta);
         if (!$resultado)
         {
@@ -16,7 +15,7 @@
     if($Tipo=='2'){
         $Clave = $_POST["clave"];
         $Nombre = $_POST["nombre"];
-        $consulta = "UPDATE tblbases SET bases_vchNombre='$Nombre' WHERE bases_intCodigo='$Clave'";
+        $consulta = "UPDATE tblrol SET rol_Descripcion = '$Nombre' WHERE rol_intCodigo ='$Clave'";
         $resultado = mysqli_query($conexion, $consulta);
         if (!$resultado)
         {
@@ -27,7 +26,7 @@
     }
      if($Tipo=='3'){
         $Clave = $_POST["clave"];
-        $consulta = "DELETE FROM tblbases WHERE bases_intCodigo='$Clave'";
+        $consulta = "DELETE FROM tblrol WHERE rol_intCodigo = '$Clave'";
         $resultado = mysqli_query($conexion, $consulta);
         if (!$resultado)
         {
@@ -35,6 +34,5 @@
         }{
             echo '1';
         }
-    } 
-
+    }      
 ?>

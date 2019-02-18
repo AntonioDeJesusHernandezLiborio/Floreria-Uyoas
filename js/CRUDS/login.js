@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 	$("#login").click(function(){
 		//alert("Boton ha reaccionado!! Backa!!");
@@ -15,13 +17,15 @@ $(document).ready(function() {
 				},
 
 				success:function(data) {
-					//alert("Entra al php");
+					alert(data);
+					var sp =data.split("-");
 					$("#login").val("Login");
-					if (data=="1") {
+					if (sp[1]=='1') {
 						alert("Bienvenido");
-						$(location).attr('href','frontend/indexadmin.php')
+						$("#iduser").text(sp[0]);
+						$(location).attr('href','frontend/indexadmin.php?tipo='+sp[0]);
+						
 					}else{
-						//alert("Vale mierda");
 						$('#result').html("<div class='alert alert-dismissible alert-danger'><button type='button' class='close' data-dimiss='alert'>&times;</button><strong>¡Error!</strong> Los datos son incorrectos. </div>")
 					}
 				}
@@ -29,7 +33,7 @@ $(document).ready(function() {
 
 		}
 		else{
-			alert("Favor de llenar todos los campos -_-");
+			alert("Campos vacios");
 		}
 	});
 });

@@ -1,6 +1,7 @@
-<?php  
+<?php
 	include ("conexion.php");
-    $consulta = "SELECT jardinera_intCodigo,jardinera_vchNombre FROM tbljardinera";
+	$codigo = $_POST['clave'];
+    $consulta = "SELECT DISTINCT img_nvchImagen FROM tblImagenes,tblproductos WHERE img_intCodigoProducto='$codigo'";
     $resultado = mysqli_query($conexion, $consulta);
     if (!$resultado)
     {
@@ -16,5 +17,4 @@
             echo $cadena;
         }
     } 
-
 ?>

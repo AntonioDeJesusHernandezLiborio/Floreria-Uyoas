@@ -1,9 +1,10 @@
-<?php
-    include ("conexion.php");
+<?php 
+	include ("conexion.php");
     $Tipo = $_POST["tipo"];
+
     if($Tipo=='1'){
         $Nombre = $_POST["nombre"];
-        $consulta = "INSERT INTO tblarreglos(arreglo_vchNombre)VALUES('$Nombre');";
+        $consulta = "INSERT INTO tbltipoproducto(tipoP_nvchDescripcion) VALUES ('$Nombre');";
         $resultado = mysqli_query($conexion, $consulta);
         if (!$resultado)
         {
@@ -15,7 +16,7 @@
     if($Tipo=='2'){
         $Clave = $_POST["clave"];
         $Nombre = $_POST["nombre"];
-        $consulta = "UPDATE tblarreglos SET arreglo_vchNombre='$Nombre' WHERE arreglo_intCodigo='$Clave'";
+        $consulta = "UPDATE tbltipoproducto SET tipoP_nvchDescripcion = '$Nombre' WHERE tipoP_intCodigo = '$Clave';";
         $resultado = mysqli_query($conexion, $consulta);
         if (!$resultado)
         {
@@ -26,7 +27,7 @@
     }
      if($Tipo=='3'){
         $Clave = $_POST["clave"];
-        $consulta = "DELETE FROM tblarreglos WHERE arreglo_intCodigo='$Clave'";
+        $consulta = "DELETE FROM tbltipoproducto WHERE tipoP_intCodigo = '$Clave'";
         $resultado = mysqli_query($conexion, $consulta);
         if (!$resultado)
         {
@@ -34,5 +35,6 @@
         }{
             echo '1';
         }
-    }      
+    } 
+
 ?>

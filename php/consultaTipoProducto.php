@@ -1,6 +1,6 @@
-<?php
-    include ("conexion.php");
-    $consulta = "SELECT arreglo_intCodigo,arreglo_vchNombre FROM tblarreglos;";
+<?php  
+	include ("conexion.php");
+    $consulta = "SELECT tipoP_intCodigo,tipoP_nvchDescripcion FROM tbltipoproducto";
     $resultado = mysqli_query($conexion, $consulta);
     if (!$resultado)
     {
@@ -15,5 +15,6 @@
             $cadena=json_encode($vec);
             echo $cadena;
         }
-    }  
+    } 
+
 ?>

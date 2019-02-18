@@ -29,7 +29,7 @@
 	</head>
 <body>
 	<header>
-		<?php include '../Menu.html' ?>
+		<?php include '../Menu.php' ?>
 	</header>
 
 

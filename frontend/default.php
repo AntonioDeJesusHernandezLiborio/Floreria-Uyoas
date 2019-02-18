@@ -18,7 +18,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-	<title>INICIO-Uyoa'S Arte Floral</title>
+	<title>En proceso-Uyoa'S Arte Floral</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="shortcut icon" href="../logo/logo_version/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
@@ -29,7 +29,7 @@
 	</head>
 <body>
 	<header>
-		<?php include '../Menu.html' ?>
+		<?php include '../Menu.php' ?>
 	</header>
 	
 	<div class="container">
@@ -39,7 +39,7 @@
 					<h1> Estamos trabajando en ello....</h1 >
 					<h3>
 					<br>
-					Ésta pagina está en proceso, lárgate a otra parte, no molestes aquí
+					Ésta pagina está en proceso....
 					</h3>
 					<img src="def.jpg" alt="Working" width="80%" height="auto">
 				</p>
