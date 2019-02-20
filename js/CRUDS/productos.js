@@ -3,6 +3,10 @@ $(document).ready(function(){
 	cargarTipoCombo();
 	cargarTipoComboE();
 
+	$("#imagenn").change(function(){
+    	$("#agregarfoto").prop("disabled", this.files.length == 0);
+	});
+
 	var imagenes;
 	$(document).on('change', 'input[type=file]', function(e) {
 	    var TmpPath = URL.createObjectURL(e.target.files[0]);
@@ -136,7 +140,7 @@ $(document).ready(function(){
 		 $(this).show();
 		 });
 	 });
-	$("#insertar-imagenes").submit(insertarProductoYa);
+	$("#agregarfoto").click(insertarProductoYa);
 
 	function insertarProductoYa(evento){
 	evento.preventDefault();
@@ -148,7 +152,10 @@ $(document).ready(function(){
         processData: false,
         contentType: false,
         success: function (data) {
-        	alert(data);
+     		$("#ExitoEmpleado").text("Foto Guardada con exito");
+			$("#ExitoEmpleado").show();
+			cargarDatosProductos();
+        	vaciarFotoModal();
         },
         error: function (msg) {
             showMsg("error", msg.statusText + ". Press F12 for details");
@@ -166,6 +173,13 @@ function vaciarProductos(){
    		Parent.removeChild(Parent.firstChild);
 	}
 }
+function vaciarFotoModal(){
+	$("#imagen").attr('src', '');
+	$('#imagenn').val('');
+	$("#agregarfoto").prop("disabled",true);
+	
+}
+
 function vaciarImagenes(){
 	var Parent = document.getElementById("cargaImagenes");
 	while(Parent.hasChildNodes())
@@ -186,7 +200,8 @@ function cargarImagenes(){
 	}).done(function(data){
 		var cadena= JSON.parse(data);
 		for (var i = cadena.length - 1; i >= 0; i--) {
-			var nuevoAlumno="<tr><td><img src='http://localhost/uyoasArteFloral/Floreria-Uyoas/imagenes/"+cadena[i].img_nvchImagen+".jpg' width='700' class='img-responsive img-thumbnail'></td></tr>";
+			var idImagen= cadena[i].img_intCodigo;
+			var nuevoAlumno="<tr><td><img src='http://localhost/uyoasArteFloral/Floreria-Uyoas/imagenes/"+cadena[i].img_nvchImagen+".jpg'  class='img-responsive img-thumbnail' width='300' height='100'> <button class='btn btn-danger' data-dismiss='modal' onclick='eliminarFoto("+'"'+idImagen+'"'+")'>Eliminar foto</button></td></tr>";
 			var nuevaFila = document.createElement("TR");
 			nuevaFila.innerHTML=nuevoAlumno;
 		 	document.getElementById("cargaImagenes").appendChild(nuevaFila);
@@ -196,9 +211,27 @@ function cargarImagenes(){
 		alert("Error en el servidor");
 		console.log(data);
 	})
-	//<img src="http://localhost/uyoasArteFloral/Floreria-Uyoas/imagenes/'+registro.img_nvchImagen+'.jpg" width="700" class="img-responsive img-thumbnail">			
 }
+function eliminarFoto(empleado){
+	var datos = {"clave":empleado};
+	$.ajax(
+	{	
+		url:"../php/eliminarFoto.php",
+		type:"POST",
+		data:datos,
+		async:true
+	}).done(function(data){
+		if(data=="1"){
+			alert("Eliminado");
+			vaciarFotoModal();
+			vaciarProductos();
+			cargarDatosProductos();
 
+		}else{
+			alert("Error al eliminar");
+		}
+	});
+}
 
 function cargarDatosProductos(){ 
 	$.ajax(
@@ -211,7 +244,7 @@ function cargarDatosProductos(){
 				var cadena= JSON.parse(data);
 				for (var i = cadena.length - 1; i >= 0; i--) {
 					var filaBases = cadena[i].pro_intCodigo+"-"+cadena[i].pro_nvcNombre+"-"+cadena[i].pro_ftlPrecio+"-"+cadena[i].pro_ftlGanancia+"-"+cadena[i].pro_intCodigoTipoProducto+"-"+cadena[i].pro__bitActivo;
-					var nuevoAlumno="<tr><td WIDTH='10'>"+cadena[i].pro_intCodigo+"  </td><td WIDTH='200'>"+cadena[i].pro_nvcNombre+"</td><td WIDTH='200'>"+cadena[i].pro_ftlPrecio+"</td><td WIDTH='200'>"+cadena[i].pro_ftlGanancia+"</td><td WIDTH='200'>"+cadena[i].tipo_producto+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaCreacion+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaModificacion+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaEliminacion+"</td><td WIDTH='200'>"+cadena[i].usuario_cracion+"</td><td WIDTH='200'>"+cadena[i].usuario_modificacion+"</td><td WIDTH='200'>"+cadena[i].usuario_eliminacion+"</td><td WIDTH='200'>"+cadena[i].pro__bitActivo+"</td><td WIDTH='200'><button class='btn btn-outline-secondary' data-toggle='modal' data-target='#editarProducto' onclick='pasarProducto("+'"'+filaBases+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;<button class='btn btn-primary' data-toggle='modal' data-target='#Fotos' onclick='consultaImagenes("+'"'+filaBases+'"'+");'>Fotos</button>&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' data-toggle='modal' data-target='#eliminarProducto' onclick='pasarProductoEliminar("+'"'+filaBases+'"'+")'>Eliminar</button></td></td></tr>";
+					var nuevoAlumno="<tr><td WIDTH='1'>"+cadena[i].pro_intCodigo+"  </td><td WIDTH='200'>"+cadena[i].pro_nvcNombre+"</td><td WIDTH='200'>"+cadena[i].pro_ftlPrecio+"</td><td WIDTH='200'>"+cadena[i].pro_ftlGanancia+"</td><td WIDTH='200'>"+cadena[i].tipo_producto+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaCreacion+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaModificacion+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaEliminacion+"</td><td WIDTH='200'>"+cadena[i].usuario_cracion+"</td><td WIDTH='200'>"+cadena[i].usuario_modificacion+"</td><td WIDTH='200'>"+cadena[i].usuario_eliminacion+"</td><td WIDTH='200'>"+cadena[i].pro__bitActivo+"</td><td WIDTH='200'><button class='btn btn-outline-secondary' data-toggle='modal' data-target='#editarProducto' onclick='pasarProducto("+'"'+filaBases+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;<button class='btn btn-primary' data-toggle='modal' data-target='#Fotos' onclick='consultaImagenes("+'"'+filaBases+'"'+");'>Fotos</button>&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' data-toggle='modal' data-target='#eliminarProducto' onclick='pasarProductoEliminar("+'"'+filaBases+'"'+")'>Eliminar</button></td></td></tr>";
     				var nuevaFila = document.createElement("TR");
    					nuevaFila.innerHTML=nuevoAlumno;
    				 	document.getElementById("productos").appendChild(nuevaFila);

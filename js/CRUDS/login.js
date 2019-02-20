@@ -17,12 +17,9 @@ $(document).ready(function() {
 				},
 
 				success:function(data) {
-					alert(data);
 					var sp =data.split("-");
-					$("#login").val("Login");
+					$("#login").val("INICIAR SESION");
 					if (sp[1]=='1') {
-						alert("Bienvenido");
-						$("#iduser").text(sp[0]);
 						$(location).attr('href','frontend/indexadmin.php?tipo='+sp[0]);
 						
 					}else{

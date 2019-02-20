@@ -41,7 +41,7 @@
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12">
 		<div id="ExitoProducto" role="alert" class="alert alert-success" style="display: none;">Registro realizado con exito.</div>
 		<div id="errorProducto" role="alert" class="alert alert-warning" style="display: none;">Registro no realizado, el producto ya existe</div>
@@ -51,18 +51,18 @@
 				<table class="table table-striped table-bordered table-hover tablaspaquetes" id="tablaProductos">
 					<tr class="success">
 						<th><h6>Codigo</h6></th>
-						<th>Nombre</th>
-						<th>Precio</th>
-						<th>Ganancia</th>
-						<th>Tipo de producto</th>
-						<th>Fecha Cracion</th>
-						<th>Fecha Modificacion</th>
-						<th>Fecha eliminacion</th>
-						<th>Empleado Creacion</th>
-						<th><h6>Empleado Modificacion</h6></th>
-						<th>Empleado Eliminacion</th>
-						<th>Activo</th>
-						<th>Acciones</th>
+						<th><h6>Nombre</h6></th>
+						<th><h6>Precio</h6></th>
+						<th><h6>Ganancia</h6></th>
+						<th><h6>Tipo de producto</h6></th>
+						<th><h6>Fecha Cracion</h6></th>
+						<th><h6>Fecha Modificacion</h6></th>
+						<th><h6>Fecha eliminacion</h6></th>
+						<th><h6>Empleado Creacion</h6></th>
+						<th><h6>Empleado Modificacion</h6></h6></th>
+						<th><h6>Empleado Eliminacion</h6></th>
+						<th><h6>Activo</h6></th>
+						<th><h6>Acciones</h6></th>
 					</tr>
 					<tbody id="productos">
 					</tbody>
@@ -234,15 +234,19 @@
 							</div>
 							<div class="form-group">
 								<label>Agregar nueva foto</label>
-								<input type="file" name="imagen_producto"  class="form-control btn btn-secundary" required>
+								<input type="file" name="imagen_producto"  id="imagenn" class="form-control btn btn-secundary" required>
 							</div>
 							<div class="form-group">
 								<center>
 									<img src="" id="imagen" width="700" class="img-responsive img-thumbnail">
 								</center>
 							</div>
-							<div id="iduser11" value="<?php echo $TIPO ?>"><?php echo $TIPO ?></div>
-							<input type="submit" class="form-control btn btn-primary">
+							<!--<input type="submit" class="form-control btn btn-primary"> -->
+							<center>
+								<button type="button" class="btn btn-outline-success" data-dismiss="modal" id="agregarfoto" disabled="disabled">Guardar Foto</button>
+							</center>
+							<br>
+							<br>
 						</form>
 					</div>
 					<div class="form-group">
@@ -257,6 +261,7 @@
 				</div>
 	      	</div>
 	      	<div class="modal-footer">
+
 	      </div>
 	    </div> 
 	  </div>

@@ -40,28 +40,31 @@
 			</nav>
 		</nav>
 	</div>
-	
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<h1><p class="text-center">Login</p></h1>
-				<div class="form-group">
-					<label class="text-center" for="user">Usuario:</label>
-					<input type="text" id="user" class="form-control" placeholder="Usuario">
-					<!-- class="form-control" -->
+	<center>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-4 col-md-4 col-md-offset-4">
+					
 				</div>
-				<div class="form-group">
-					<label class="text-center" for="pass">Contraseña:</label>
-					<input type="password" id="pass" class="form-control" placeholder="Contraseña">
+				<div class="col-md-offset-4 col-md-4 col-md-offset-4">
+					<h1><p class="text-center"><h2>INICIA SESION</h2></p></h1>
+					<div class="form-group">
+						<label class="text-center" for="user">Usuario:</label>
+						<input type="text" id="user" class="form-control" placeholder="Usuario">
+						<!-- class="form-control" -->
+					</div>
+					<div class="form-group">
+						<label class="text-center" for="pass">Contraseña:</label>
+						<input type="password" id="pass" class="form-control" placeholder="Contraseña">
+					</div>
+					<div class="form-group">
+						<input type="button" name="login" id="login" class="btn btn-success" value="INICIAR SESION">
+					</div>
+					<span id="result"></span>
 				</div>
-				<div class="form-group">
-					<input type="button" name="login" id="login" class="btn btn-success" value="Login">
-				</div>
-				<span id="result"></span>
-				<div id="iduser"></div>
 			</div>
 		</div>
-	</div>
+	</center>
 </body>
 
 <script type="text/javascript">

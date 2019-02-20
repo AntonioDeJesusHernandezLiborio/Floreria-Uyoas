@@ -1,7 +1,7 @@
 <?php
 	include ("conexion.php");
 	$codigo = $_POST['clave'];
-    $consulta = "SELECT DISTINCT img_nvchImagen FROM tblImagenes,tblproductos WHERE img_intCodigoProducto='$codigo'";
+    $consulta = "SELECT DISTINCT img_intCodigo,img_nvchImagen FROM tblImagenes,tblproductos WHERE img_intCodigoProducto='$codigo'";
     $resultado = mysqli_query($conexion, $consulta);
     if (!$resultado)
     {
