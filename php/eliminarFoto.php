@@ -9,8 +9,8 @@ include ("conexion.php");
     $resultado = mysqli_query($conexion, $consulta);
     if (!$resultado)
     {
-        echo '0';
+        echo 'Error';
     }{
-        echo '1';
+        echo $resultado;
     }
 ?>

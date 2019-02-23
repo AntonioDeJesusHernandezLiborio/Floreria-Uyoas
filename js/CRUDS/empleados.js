@@ -78,6 +78,7 @@ $(document).ready(function()
 		var usuario = $("#usuario_Empleado").val();
 		var clave = $("#clave_Empleado").val();
 		var rol = $("#Rol_EmpleadoE").val();
+		
 
 		if(nombre==""){
 			$("#debeEscribirNombreEmple").show();
@@ -269,7 +270,7 @@ function cargarDatosEmpleado(){
 				var cadena= JSON.parse(data);
 				for (var i = cadena.length - 1; i >= 0; i--) {
 					var filaEmpleado= cadena[i].emple_intCodigo+"-"+cadena[i].emple_nvchNombre+"-"+cadena[i].emple_vchAM+"-"+cadena[i].emple_vchAP+"-"+cadena[i].emple_ftlPago+"-"+cadena[i].emple_nvchTelefono+"-"+cadena[i].emple_vchDireccion+"-"+cadena[i].emple_vchUsuario+"-"+cadena[i].emple_nvchClave+"-"+cadena[i].rol_Descripcion+"-"+cadena[i].emple_bitActivo+"-"+cadena[i].emple_intIdRol;
-					var nuevoEmpleado="<tr><td WIDTH='1'>"+cadena[i].emple_intCodigo+"  </td><td WIDTH='500'>"+cadena[i].emple_nvchNombre+"</td><td WIDTH='500'>"+cadena[i].emple_vchAM+"</td><td WIDTH='500'>"+cadena[i].emple_vchAP+"</td><td WIDTH='500'>"+cadena[i].emple_ftlPago+"</td><td WIDTH='500'>"+cadena[i].emple_nvchTelefono+"</td><td WIDTH='10'>"+cadena[i].emple_vchDireccion+"</td><td WIDTH='500'>"+cadena[i].emple_vchUsuario+"</td><td WIDTH='500'>"+cadena[i].emple_nvchClave+"</td><td WIDTH='500'>"+cadena[i].rol_Descripcion+"</td><td WIDTH='500'>"+cadena[i].emple_bitActivo+"</td><td WIDTH='300'><button class='btn btn-outline-secondary' data-toggle='modal' data-target='#EditarEmpleado' onclick='pasarEmpleado("+'"'+filaEmpleado+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' data-toggle='modal' data-target='#eliminarEmpleado' onclick='pasarEmpleadoEliminar("+'"'+filaEmpleado+'"'+")'>Eliminar</button></td></td></tr>";
+					var nuevoEmpleado="<tr><td WIDTH='500'>"+cadena[i].emple_nvchNombre+"</td><td WIDTH='500'>"+cadena[i].emple_vchAM+"</td><td WIDTH='500'>"+cadena[i].emple_vchAP+"</td><td WIDTH='500'>"+cadena[i].emple_ftlPago+"</td><td WIDTH='500'>"+cadena[i].emple_nvchTelefono+"</td><td WIDTH='10'>"+cadena[i].emple_vchDireccion+"</td><td WIDTH='500'>"+cadena[i].emple_vchUsuario+"</td><td WIDTH='500'>"+cadena[i].rol_Descripcion+"</td><td WIDTH='500'>"+cadena[i].emple_bitActivo+"</td><td WIDTH='300'><button class='btn btn-outline-secondary' data-toggle='modal' data-target='#EditarEmpleado' onclick='pasarEmpleado("+'"'+filaEmpleado+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' data-toggle='modal' data-target='#eliminarEmpleado' onclick='pasarEmpleadoEliminar("+'"'+filaEmpleado+'"'+")'>Eliminar</button></td></td></tr>";
     				var nuevaFilaEmpleado = document.createElement("TR");
    					nuevaFilaEmpleado.innerHTML=nuevoEmpleado;
    				 	document.getElementById("Empleados").appendChild(nuevaFilaEmpleado);

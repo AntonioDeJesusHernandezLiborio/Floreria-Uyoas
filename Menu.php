@@ -26,7 +26,7 @@
 						<li class="dropdown"> 
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" >REGISTRAR<span class="caret"></span></a>
 							<ul class="dropdown-menu"> 
-								<li><a href="casuales.php?tipo=<?php echo $TIPO ?>" class="nav-link">ARREGLOS CASUALES</a></li>
+								<li><a href="casuales.php?tipo=<?php echo $TIPO ?>" class="nav-link">PRODUCTOS</a></li>
 								<li class="divider"></li>
 								<li><a href="Paquete.php?tipo=<?php echo $TIPO ?>"class="nav-link">PAQUETES</a></li>
 								<li class="divider"></li>
@@ -38,7 +38,7 @@
 						</li>
 						<li class="nav-item"><a href="reporte.php?tipo=<?php echo $TIPO ?>" class="nav-link">REPORTES</a></li>
 						<li class="nav-item"><a href="default.php?tipo=<?php echo $TIPO ?>" class="nav-link">PEDIDOS</a></li>
-						<li class="nav-item"><a href="default.php?tipo=<?php echo $TIPO ?>" class="nav-link">CONFIGURACION</a></li>
+						<li class="nav-item"><a href="configuracion.php?tipo=<?php echo $TIPO ?>" class="nav-link">CONFIGURACION</a></li>
 						<li class="nav-item"><a href="../php/logout.php" class="nav-link">CERRAR SESION</a></li>
 						
 					</ul>

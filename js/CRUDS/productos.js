@@ -3,11 +3,20 @@ $(document).ready(function(){
 	cargarTipoCombo();
 	cargarTipoComboE();
 
+	
+	$("#cerrarModalNoEliminado").click(function(){
+		$("#eliminarFotooo").hide();
+	})
+
+	$("#cerrarModalEliminado").click(function(){
+		eliminarFoto();
+		$("#eliminarFotooo").hide();
+	})
+
 	$("#imagenn").change(function(){
     	$("#agregarfoto").prop("disabled", this.files.length == 0);
 	});
 
-	var imagenes;
 	$(document).on('change', 'input[type=file]', function(e) {
 	    var TmpPath = URL.createObjectURL(e.target.files[0]);
 		$("#imagen").attr('src', TmpPath);
@@ -20,6 +29,7 @@ $(document).ready(function(){
 		$("#debePonerPrecio").hide();
 	})
 	$("#ganancia_Producto").click(function(){
+		$("#debePonerGanancia").text("Debe ingresar ganancia.");
 		$("#debePonerGanancia").hide();
 	})
 	$("#tipoarreglo1").click(function(){
@@ -44,7 +54,7 @@ $(document).ready(function(){
 		var precio = $("#precio_Producto").val();
 		var ganancia = $("#ganancia_Producto").val();
 		var tipo = $("#tipoarreglo1").val();
-
+		
 		if(nombre==""){
 			$("#debePonerNombre").show();
 			return false;
@@ -52,6 +62,10 @@ $(document).ready(function(){
 			$("#debePonerPrecio").show();
 			return false;
 		}else if (ganancia == 0  || ganancia == "" || isNaN(ganancia)) {
+			$("#debePonerGanancia").show();
+			return false;
+		}else if (ganancia>=precio){
+			$("#debePonerGanancia").text("EL PRECIO ES MENOR QUE LA GANANCIA.");
 			$("#debePonerGanancia").show();
 			return false;
 		}else if (tipo == 0  || tipo == ""){
@@ -72,13 +86,15 @@ $(document).ready(function(){
 					$("#ExitoProducto").show();
 					vaciarProductos();
 					cargarDatosProductos();
+					alertify.success("Producto agregado");
+				
 				}else{
 					$("#errorProducto").text("Ocurrio un error al guardar");
 					$("#errorProducto").show();
 				}
 			}).fail(function(data){
 				alert(data);
-			})
+			});
 		}
 	});
 
@@ -113,7 +129,11 @@ $(document).ready(function(){
 				async:true,
 			}).done(function(data){
 				if(data==1){
-					$("#ExitoProducto").text("Producto editado con exito");
+					$("#nombre_Producto").val(' ');
+					$("#precio_Producto").val(' ');
+					$("#ganancia_Producto").val(' ');
+					$("#tipoarreglo1").val(' ');
+					$("#ExitoProducto").val("Producto editado con exito");
 					$("#ExitoProducto").show();
 					vaciarProductos();
 					cargarDatosProductos();
@@ -154,8 +174,8 @@ $(document).ready(function(){
         success: function (data) {
      		$("#ExitoEmpleado").text("Foto Guardada con exito");
 			$("#ExitoEmpleado").show();
-			cargarDatosProductos();
         	vaciarFotoModal();
+        	cargarImagenes();
         },
         error: function (msg) {
             showMsg("error", msg.statusText + ". Press F12 for details");
@@ -190,7 +210,7 @@ function vaciarImagenes(){
 
 function cargarImagenes(){
 	vaciarImagenes();
-	var datos ={"clave":$("#imagen_producto1").val()};
+	var datos ={"clave":$("#codigo_ProductoE").val()};
 	$.ajax(
 	{	
 		url:"../php/guardarImagen.php",
@@ -201,7 +221,8 @@ function cargarImagenes(){
 		var cadena= JSON.parse(data);
 		for (var i = cadena.length - 1; i >= 0; i--) {
 			var idImagen= cadena[i].img_intCodigo;
-			var nuevoAlumno="<tr><td><img src='http://localhost/uyoasArteFloral/Floreria-Uyoas/imagenes/"+cadena[i].img_nvchImagen+".jpg'  class='img-responsive img-thumbnail' width='300' height='100'> <button class='btn btn-danger' data-dismiss='modal' onclick='eliminarFoto("+'"'+idImagen+'"'+")'>Eliminar foto</button></td></tr>";
+			var nuevoAlumno="<tr><td><img src='http://localhost/uyoasArteFloral/Floreria-Uyoas/imagenes/"+cadena[i].img_nvchImagen+".jpg'  class='img-responsive img-thumbnail'> <center><button class='btn btn-danger' onClick='abrirEliminarFoto("+'"'+idImagen+'"'+");' >Eliminar foto</button></center></td></tr>";
+			//eliminar,,,,,onclick='eliminarFoto("+'"'+idImagen+'"'+")'
 			var nuevaFila = document.createElement("TR");
 			nuevaFila.innerHTML=nuevoAlumno;
 		 	document.getElementById("cargaImagenes").appendChild(nuevaFila);
@@ -209,11 +230,17 @@ function cargarImagenes(){
 		
 	}).fail(function(data){
 		alert("Error en el servidor");
-		console.log(data);
 	})
 }
-function eliminarFoto(empleado){
-	var datos = {"clave":empleado};
+
+function abrirEliminarFoto(codigoFoto){
+	$("#eliminarFotooo").show();
+	$("#Codigo_FotoEliminar").val(codigoFoto);
+}
+
+
+function eliminarFoto(){
+	var datos = {"clave":$("#Codigo_FotoEliminar").val()};
 	$.ajax(
 	{	
 		url:"../php/eliminarFoto.php",
@@ -221,12 +248,10 @@ function eliminarFoto(empleado){
 		data:datos,
 		async:true
 	}).done(function(data){
+		alert(data);
 		if(data=="1"){
-			alert("Eliminado");
 			vaciarFotoModal();
-			vaciarProductos();
-			cargarDatosProductos();
-
+			cargarImagenes();
 		}else{
 			alert("Error al eliminar");
 		}
@@ -243,8 +268,8 @@ function cargarDatosProductos(){
 			).done(function(data){
 				var cadena= JSON.parse(data);
 				for (var i = cadena.length - 1; i >= 0; i--) {
-					var filaBases = cadena[i].pro_intCodigo+"-"+cadena[i].pro_nvcNombre+"-"+cadena[i].pro_ftlPrecio+"-"+cadena[i].pro_ftlGanancia+"-"+cadena[i].pro_intCodigoTipoProducto+"-"+cadena[i].pro__bitActivo;
-					var nuevoAlumno="<tr><td WIDTH='1'>"+cadena[i].pro_intCodigo+"  </td><td WIDTH='200'>"+cadena[i].pro_nvcNombre+"</td><td WIDTH='200'>"+cadena[i].pro_ftlPrecio+"</td><td WIDTH='200'>"+cadena[i].pro_ftlGanancia+"</td><td WIDTH='200'>"+cadena[i].tipo_producto+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaCreacion+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaModificacion+"</td><td WIDTH='200'>"+cadena[i].pro_dtFechaEliminacion+"</td><td WIDTH='200'>"+cadena[i].usuario_cracion+"</td><td WIDTH='200'>"+cadena[i].usuario_modificacion+"</td><td WIDTH='200'>"+cadena[i].usuario_eliminacion+"</td><td WIDTH='200'>"+cadena[i].pro__bitActivo+"</td><td WIDTH='200'><button class='btn btn-outline-secondary' data-toggle='modal' data-target='#editarProducto' onclick='pasarProducto("+'"'+filaBases+'"'+");'>Editar</button>&emsp;&emsp;&emsp;&emsp;<button class='btn btn-primary' data-toggle='modal' data-target='#Fotos' onclick='consultaImagenes("+'"'+filaBases+'"'+");'>Fotos</button>&emsp;&emsp;&emsp;&emsp;<button class='btn btn-danger' data-toggle='modal' data-target='#eliminarProducto' onclick='pasarProductoEliminar("+'"'+filaBases+'"'+")'>Eliminar</button></td></td></tr>";
+					var filaBases = cadena[i].pro_intCodigo+"+"+cadena[i].pro_nvcNombre+"+"+cadena[i].pro_ftlPrecio+"+"+cadena[i].pro_ftlGanancia+"+"+cadena[i].pro_intCodigoTipoProducto+"+"+cadena[i].pro__bitActivo+"+"+cadena[i].pro_dtFechaCreacion+"+"+cadena[i].usuario_cracion+"+"+cadena[i].pro_dtFechaModificacion+"+"+cadena[i].usuario_modificacion+"+"+cadena[i].pro_dtFechaEliminacion+"+"+cadena[i].usuario_eliminacion;
+					var nuevoAlumno="<td WIDTH='1'>"+cadena[i].pro_intCodigo+"  </td><td WIDTH='200'>"+cadena[i].pro_nvcNombre+"</td><td WIDTH='200'>"+cadena[i].pro_ftlPrecio+"</td><td WIDTH='200'>"+cadena[i].pro_ftlGanancia+"</td><td WIDTH='200'>"+cadena[i].tipo_producto+"</td><td WIDTH='200'>"+cadena[i].pro__bitActivo+"</td><td WIDTH='200'><button class='btn btn-outline-secondary' data-toggle='modal' data-target='#editarProducto' onclick='pasarProducto("+'"'+filaBases+'"'+");consultaImagenes("+'"'+filaBases+'"'+");'>Editar</button><button class='btn btn-danger' data-toggle='modal' data-target='#eliminarProductoM' onclick='pasarProductoEliminar("+'"'+filaBases+'"'+")'>Eliminar</button></td>";
     				var nuevaFila = document.createElement("TR");
    					nuevaFila.innerHTML=nuevoAlumno;
    				 	document.getElementById("productos").appendChild(nuevaFila);
@@ -256,18 +281,19 @@ function cargarDatosProductos(){
 			})
 }
 
+
+
 function consultaImagenes(empleado){
 	$("#ExitoEmpleado").hide();
-	var sp =empleado.split("-");
+	var sp =empleado.split("+");
 	$("#imagen_producto1").val(sp[0]);
-	cargarImagenes();
 }
 
 
 
 function pasarProducto(empleado){
 	$("#ExitoEmpleado").hide();
-	var sp =empleado.split("-");
+	var sp =empleado.split("+");
 	$("#codigo_ProductoE").val(sp[0]);
 	$("#nombre_ProductoE").val(sp[1]);
 	$("#precio_ProductoE").val(sp[2]);
@@ -276,11 +302,18 @@ function pasarProducto(empleado){
 	if(sp[5]=='1'){
 		$("#activo_Producto").prop( "checked", true );
 	}
+	$("#fechaCreacion_Producto").val(sp[6]);
+	$("#empleadoCracion_Producto").val(sp[7]);
+	$("#fechaModificacion_Producto").val(sp[8]);
+	$("#empleadoModificacion_Producto").val(sp[9]);
+	$("#fechaEliminacion_Producto").val(sp[10]);
+	$("#empleadoEliminacion_Producto").val(sp[11]);
+	cargarImagenes();
 }
 
 function pasarProductoEliminar(empleado){
 	$("#ExitoEmpleado").hide();
-	var sp =empleado.split("-");
+	var sp =empleado.split("+");
 	$("#Codigo_ProductoEliminar").val(sp[0]);
 	$("#Nombre_ProductoEliminar").val(sp[1]);
 }

@@ -4,9 +4,25 @@ html{
 	/*font-size: 13px;*/
 }
 .tablaspaquetes {
-     overflow:scroll;
-     height:500px;
+     display: block;
+     max-height: 500px;
+     overflow-y: auto;
+     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+
+
+    
+
+
+
+.tablasImagenes {
+    display: block;
+	max-height: 400px;
+	overflow-y: auto;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
 
 body{
 	background: white;
