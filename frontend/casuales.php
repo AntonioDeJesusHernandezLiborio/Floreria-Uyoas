@@ -33,6 +33,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="container col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-4">
+				<!-- Boton para abrir modal -->
 				<button class="btn btn-primary" data-toggle="modal" data-target="#abrirModal" id="nuevoProducto1">Agregar Producto</button>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-4">
@@ -41,8 +42,8 @@
 		</div>
 	</div>
 
-		<!-- Button trigger modal -->
-	
+		
+	<!-- agregamos el container -->
 	<div class="container">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12">
 		<div id="ExitoProducto" role="alert" class="alert alert-success" style="display: none;">Registro realizado con exito.</div>
@@ -50,6 +51,7 @@
 		<h1 class="text-muted">Lista de productos registrados</h1>
 	</div>
 	<div class="container">
+		<!-- Tabla de prodcutos -->
 		<div class="table-responsive">
 					<table class="table table-striped table-bordered table-hover tablaspaquetes" id="tablaProductos">
 						<tr class="success">
@@ -70,6 +72,7 @@
 
 
 <!---------------------------------------PRODUCTO--------------------------------------------->
+<!------- agregar nuevo producto-->
 	<div class="modal fade" id="abrirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -86,19 +89,16 @@
 								<div class="form-group">
 					        	<label for="">Nombre:</label>
 								<input class="form-control" type="text" id="nombre_Producto">
-								<br>
 								<div id="debePonerNombre" role="alert" class="alert alert-warning" style="display: none;">Debe ingresar campo</div>
 								</div>
 						        <div class="form-group">
 						        	<label for="">Precio:</label>
 						        	<input class="form-control" type="text" id="precio_Producto" >
-						        	<br>
 						        	<div id="debePonerPrecio" role="alert" class="alert alert-warning" style="display: none;">Debe ingresar precio</div>
 						        </div>
 						        <div class="form-group">
 						        	<label for="">Ganancia:</label>
 						        	<input class="form-control" type="text" id="ganancia_Producto">
-						        	<br>
 						        	<div id="debePonerGanancia" role="alert" class="alert alert-warning" style="display: none;">Debe ingresar ganancia</div>
 						        </div>
 						        <div class="form-group">
@@ -108,20 +108,27 @@
 									</select>
 									<div id="iduser11" value="<?php echo $TIPO ?> " style="display: none;"><?php echo $TIPO ?></div>
 								<br>
+								<div class="form-group" >
+									<label for="">Seleccione las categorias:</label>
+									<ul style="list-style: none;" id="cetegorias">
+
+										
+									</ul>
 						        	<div id="debePonerTipo" role="alert" class="alert alert-warning" style="display: none;">Debe selecionar tipo arreglo</div>
-							</div>					
+								</div>				
 						</div>
 					</div>
 		      	</div>
 		      	<div class="modal-footer">
 					<button type="button" class="btn btn-primary" data-dismiss="modal" id="guardarProducto">Guardar</button>
-		      </div>
+				 </div>
 		    </div> 
 		  </div>
 	</div>
+</div>
 	<br>
 	<br>
-
+	<!-- MODAL PARA EDITAR PRODUCTO -->
 	<div class="modal" id="editarProducto" >
 		<div class="modal-dialog modal-xl">
 		  	<div class="modal-content">
@@ -220,7 +227,21 @@
 										</tbody>
 									</table>
 								</div>
+								<div class="container">
+									<center>Categorias</center>
+									<div class="row">
+				        				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-6">
+				        					<div class="form-group" >
+												<label for="">Seleccione las categorias:</label>
+												<ul style="list-style: none;" id="cetegoriasEditar">
+												</ul>
+									        	<div id="debePonerTipo" role="alert" class="alert alert-warning" style="display: none;">Debe selecionar tipo arreglo</div>
+											</div>	
+			        					</div>
+			        				</div>
+			        			</div>
 			        		</div>
+
 			        		<div class="modal" id="eliminarFotooo" >
 							  <div class="modal-dialog modal-dialog-centered" >
 							    <div class="modal-content">
@@ -278,6 +299,7 @@
 	    </div>
 	  </div>
 	</div>
+
 
 
 	<footer>
